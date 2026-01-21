@@ -155,7 +155,7 @@ def main(page: ft.Page):
             device_table.rows.append(
                 ft.DataRow(
                     cells=[
-                        ft.DataCell(ft.Icon(ft.icons.CHECK_CIRCLE, color="blue") if is_selected else ft.Icon(ft.icons.CIRCLE_OUTLINED)),
+                        ft.DataCell(ft.Icon("check_circle", color="blue") if is_selected else ft.Icon("circle_outlined")),
                         ft.DataCell(ft.Text(sn)),
                         ft.DataCell(ft.Text("TCP/IP" if ":" in sn else "USB")),
                         ft.DataCell(ft.Text(status, color="green" if status == "device" else "red")),
@@ -228,8 +228,8 @@ def main(page: ft.Page):
         lang_btn.text = "English" if lang == "zh" else "中文"
         page.update()
 
-    btn_conn = ft.ElevatedButton(text="Connect", on_click=on_connect, icon=ft.icons.COMPUTER)
-    btn_refresh = ft.OutlinedButton(text="Refresh", on_click=refresh_devices, icon=ft.icons.REFRESH)
+    btn_conn = ft.ElevatedButton(text="Connect", on_click=on_connect, icon="computer")
+    btn_refresh = ft.OutlinedButton(text="Refresh", on_click=refresh_devices, icon="refresh")
     lang_btn = ft.TextButton(text="English", on_click=toggle_lang)
 
     tab1 = ft.Tab(text="Devices", content=ft.Column([device_table], scroll=ft.ScrollMode.ALWAYS))
@@ -251,10 +251,10 @@ def main(page: ft.Page):
     ], spacing=20, padding=20))
 
     tab3 = ft.Tab(text="Capture", content=ft.Row([
-        ft.ElevatedButton("Logcat", on_click=lambda _: on_capture("logcat"), icon=ft.icons.DESCRIPTION),
-        ft.ElevatedButton("Dmesg", on_click=lambda _: on_capture("dmesg"), icon=ft.icons.BUG_REPORT),
-        ft.ElevatedButton("Tombstones", on_click=lambda _: on_capture("tombstones"), icon=ft.icons.FOLDER_ZIP),
-        ft.ElevatedButton("ANR", on_click=lambda _: on_capture("anr"), icon=ft.icons.ERROR_OUTLINE),
+        ft.ElevatedButton("Logcat", on_click=lambda _: on_capture("logcat"), icon="description"),
+        ft.ElevatedButton("Dmesg", on_click=lambda _: on_capture("dmesg"), icon="bug_report"),
+        ft.ElevatedButton("Tombstones", on_click=lambda _: on_capture("tombstones"), icon="folder_zip"),
+        ft.ElevatedButton("ANR", on_click=lambda _: on_capture("anr"), icon="error_outline"),
     ], spacing=10, padding=20))
 
     page.add(
