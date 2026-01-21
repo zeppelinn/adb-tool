@@ -3,7 +3,7 @@ name: Build Windows EXE
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: # 支持手动触发
+  workflow_dispatch:
 
 jobs:
   build:
@@ -22,24 +22,17 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install flet  # 确保 flet 已安装
+        pip install flet pyinstaller  # 显式安装 pyinstaller
 
     - name: Build with Flet
       run: |
-        # 使用 flet pack 进行打包
-        flet pack adb_tool.py --name AdbTool --icon icon.png
-      # 注意：如果没有 icon.png，请删除 --icon 部分
+        # 创建一个简单的打包环境
+        # 如果没有图标文件，去掉 --icon 参数
+        flet pack adb_tool.py --name AdbTool
+      shell: bash  # 使用 bash 更加稳定
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: AdbTool-Windows
         path: dist/*.exe
-
-    - name: Release (Optional)
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v2
-      with:
-        files: dist/*.exe
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
