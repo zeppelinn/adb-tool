@@ -228,8 +228,8 @@ def main(page: ft.Page):
         lang_btn.text = "English" if lang == "zh" else "中文"
         page.update()
 
-    btn_conn = ft.ElevatedButton(text="Connect", on_click=on_connect, icon=ft.icons.LAN)
-    btn_refresh = ft.OutlineButton(text="Refresh", on_click=refresh_devices, icon=ft.icons.REFRESH)
+    btn_conn = ft.ElevatedButton(text="Connect", on_click=on_connect, icon=ft.icons.COMPUTER)
+    btn_refresh = ft.OutlinedButton(text="Refresh", on_click=refresh_devices, icon=ft.icons.REFRESH)
     lang_btn = ft.TextButton(text="English", on_click=toggle_lang)
 
     tab1 = ft.Tab(text="Devices", content=ft.Column([device_table], scroll=ft.ScrollMode.ALWAYS))
