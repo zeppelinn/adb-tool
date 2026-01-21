@@ -208,7 +208,7 @@ def main(page: ft.Page):
             log(f"Pulled to: {folder_path}")
 
     # --- UI 组件布局 ---
-    ip_input = ft.TextField(label="IP", placeholder="192.168.1.100", expand=True)
+    ip_input = ft.TextField(label="IP", hint_text="192.168.1.100", expand=True)
     port_input = ft.TextField(label="Port", value="5555", width=100)
 
     def toggle_lang(e):
